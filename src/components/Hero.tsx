@@ -57,10 +57,6 @@ export function Hero() {
         className="pointer-events-none absolute inset-x-0 bottom-0 flex flex-col items-center gap-5 px-6 pb-10 text-center sm:pb-14"
         style={{ opacity: 1 - p * 1.6, transform: `translateY(${p * -24}px)` }}
       >
-        <div className="hidden sm:block">
-          <p className="wordmark text-3xl leading-none text-foreground lg:text-4xl">VIVA</p>
-          <p className="eyebrow mt-3">Active Natural Care</p>
-        </div>
         <p className="display-title max-w-xs text-lg italic text-muted-foreground sm:max-w-none sm:text-2xl">
           Natural care. Active life.
         </p>
