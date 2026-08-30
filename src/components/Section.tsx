@@ -38,18 +38,64 @@ export function Section({
   );
 }
 
-export function PlaceholderGrid({ items }: { items: string[] }) {
+export function InfoGrid({ items }: { items: { title: string; text: string }[] }) {
   return (
     <ul className="grid gap-px overflow-hidden border-y border-border sm:grid-cols-3">
-      {items.map((label, i) => (
-        <Reveal as="li" key={label} delay={i * 90}>
+      {items.map((item, i) => (
+        <Reveal as="li" key={item.title} delay={i * 90}>
           <div className="h-full border-b border-border px-1 py-10 sm:border-b-0 sm:border-r sm:px-8">
             <span className="eyebrow text-[0.6rem]">{`0${i + 1}`}</span>
-            <h3 className="display-title mt-4 text-2xl sm:text-3xl">{label}</h3>
-            <p className="placeholder-note mt-4">[Informação a definir]</p>
+            <h3 className="display-title mt-4 text-2xl sm:text-3xl">{item.title}</h3>
+            <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{item.text}</p>
           </div>
         </Reveal>
       ))}
     </ul>
+  );
+}
+
+export function DataTable({
+  head,
+  rows,
+  caption,
+}: {
+  head: string[];
+  rows: string[][];
+  caption?: string;
+}) {
+  return (
+    <div className="overflow-x-auto">
+      <table className="w-full min-w-[34rem] border-collapse text-left text-sm">
+        {caption ? (
+          <caption className="eyebrow mb-4 text-left text-[0.58rem]">{caption}</caption>
+        ) : null}
+        <thead>
+          <tr className="border-y border-border">
+            {head.map((h) => (
+              <th
+                key={h}
+                className="py-4 pr-6 text-[0.6rem] font-normal tracking-[0.22em] uppercase text-muted-foreground"
+              >
+                {h}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((row) => (
+            <tr key={row.join("|")} className="border-b border-border/60">
+              {row.map((cell, i) => (
+                <td
+                  key={i}
+                  className={`py-4 pr-6 align-top ${i === 0 ? "text-foreground" : "text-muted-foreground"}`}
+                >
+                  {cell}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 }

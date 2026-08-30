@@ -7,6 +7,11 @@ export type Product = {
   image: string;
   alt: string;
   tint: string;
+  description: string;
+  ingredients: string;
+  benefits: string;
+  cost: string;
+  price: string;
 };
 
 export function ProductStory({ product, flip }: { product: Product; flip: boolean }) {
@@ -41,13 +46,35 @@ export function ProductStory({ product, flip }: { product: Product; flip: boolea
             </h3>
             <div className="rule-line my-8" />
             <dl className="space-y-6">
-              {["Descrição", "Ingredientes", "Benefícios"].map((label) => (
-                <div key={label}>
-                  <dt className="eyebrow text-[0.6rem]">{label}</dt>
-                  <dd className="placeholder-note mt-2">[Informação a definir]</dd>
-                </div>
-              ))}
+              <div>
+                <dt className="eyebrow text-[0.6rem]">Descrição</dt>
+                <dd className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                  {product.description}
+                </dd>
+              </div>
+              <div>
+                <dt className="eyebrow text-[0.6rem]">Composição</dt>
+                <dd className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                  {product.ingredients}
+                </dd>
+              </div>
+              <div>
+                <dt className="eyebrow text-[0.6rem]">Benefícios</dt>
+                <dd className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                  {product.benefits}
+                </dd>
+              </div>
             </dl>
+            <div className="mt-8 flex items-baseline gap-6 border-t border-border pt-6">
+              <div>
+                <span className="eyebrow text-[0.55rem]">Preço comercial</span>
+                <p className="display-title mt-1 text-2xl">{product.price}</p>
+              </div>
+              <div>
+                <span className="eyebrow text-[0.55rem]">Custo unitário</span>
+                <p className="mt-1 text-sm text-muted-foreground">{product.cost}</p>
+              </div>
+            </div>
           </div>
         </Reveal>
       </div>
